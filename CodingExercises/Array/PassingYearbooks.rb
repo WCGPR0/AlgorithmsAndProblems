@@ -60,5 +60,3 @@ def find_signature_counts(arr)
   end
   return yearbook_arr.map{ |yearbook| yearbook[:signatures] }
 end
-
-puts find_signature_counts([1,2])
