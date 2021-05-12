@@ -22,4 +22,16 @@ The 3rd element of output is 2*2*1 = 4, the 4th is 2*2*1 = 4, and the 5th is 2*2
 =end
 
 def find_max_product(arr)
+    max_product = []
+    top_three_arr = []
+    arr.each_with_index { |element, index|
+        top_three_arr.push(element)
+        top_three_arr.delete_at(top_three_arr.index(top_three_arr.min)) if (top_three_arr.length() > 3) 
+        if index >= 2 
+            max_product.push(top_three_arr.inject(:*))
+        else 
+            max_product.push(-1)
+        end
+    }
+    return max_product
 end
