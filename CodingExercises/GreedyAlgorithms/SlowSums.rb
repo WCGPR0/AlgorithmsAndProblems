@@ -21,5 +21,13 @@ Add 9 + 1 for a penalty of 10. The penalties sum to 26.
 =end
 
 def get_total_time(arr)
-
+  return arr.inject(0, :+) if arr.length() <= 2
+  arr.sort!
+  running_time = arr[arr.length() - 1] + arr[arr.length() - 2]
+  total_time = running_time
+  (arr.length()-3).downto(0) { |i|
+      running_time += arr[i]
+      total_time += running_time
+  }
+  return total_time
 end
