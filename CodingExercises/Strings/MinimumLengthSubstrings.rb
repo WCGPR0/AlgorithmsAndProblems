@@ -16,5 +16,21 @@ Substring "dcbef" can be rearranged to "cfdeb", "cefdb", and so on. String t is 
 =end
 
 def min_length_substring(s,t)
-
+    min_length_substring = -1
+    counter = Hash[t.split('').group_by{ |c| c}.map{ |k, v| [k, v.size] }]
+    counter.default = 0
+    l = 0
+    t_matches = 0
+    s.each_char.with_index{ |c, index| 
+        counter[c] -= 1
+        t_matches += 1 if counter[c] >= 0
+        while t_matches == t.length()
+            window_length = index - l + 1
+            min_length_substring = min_length_substring == -1 ? window_length : [min_length_substring, window_length].min
+            counter[c] += 1
+            t_matches -= 1 if counter[c] > 0 
+            l += 1
+        end
+    }
+    return min_length_substring
 end
