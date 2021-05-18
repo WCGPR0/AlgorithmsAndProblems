@@ -26,4 +26,24 @@ Two indices have to be swapped, regardless of which two it is, only one letter w
 =end
 
 def matching_pairs(s,t)
+    return -1 if s.length() != t.length()
+    arr_length = s.length()
+    unmapped_keys = Hash.new(0)
+    (1..arr_length).each { |i|
+        if s[i] != t[i]
+            unmapped_keys[s[i]] += 1
+            unmapped_keys[t[i]] += 1
+        end
+    }
+    if unmapped_keys.length() == 0
+        return arr_length < 3 ? 0 : 1
+    end
+    meaningful_swap_count = unmapped_keys.select{ |k, v| v >= 2 }.length()
+    matching_pairs_count = arr_length - (unmapped_keys.values.inject(0) {|sum, v| sum + v } / 2)
+    if meaningful_swap_count >= 2
+        matching_pairs_count += 2
+    elsif meaningful_swap_count == 1
+        matching_pairs_count += 1
+    end
+    return matching_pairs_count
 end

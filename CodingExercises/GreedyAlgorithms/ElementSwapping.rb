@@ -24,5 +24,19 @@ output = [2, 8, 9, 11, 1]
 We can swap [11, 2], followed by [9, 2], then [8, 2].
 =end
 
+SwappedElement = Struct.new(:original_index, :val)
+
 def find_min_array(arr, k)
+    sorted_arr = arr.each_with_index.map { |element, index|
+        SwappedElement.new(index, element)
+    }.sort_by{ |swapped_element| swapped_element[:val] }
+    arr.each_with_index { |element, index| 
+        target = sorted_arr.find { |sorted_element| (sorted_element[:original_index] - index) <= k }
+        break if target.nil?
+        target[:original_index].downto(index+1) { |i|
+            arr[i], arr[i-1] = arr[i-1], arr[i]
+            k -= 1
+        }
+    }
+    return arr
 end

@@ -19,4 +19,8 @@ If the guests sit down in the permutation [3, 1, 4, 2] in clockwise order around
 =end
 
 def min_overall_awkwardness(arr)
+    return -1 if arr.length() < 3
+    third_largest_number = arr.sort!.delete_at(-3)
+    arr.unshift(third_largest_number)
+    return arr.each_cons(2).to_a.inject(0){ |sum, (x, y)| sum + y - x }
 end
