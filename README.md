@@ -5,8 +5,6 @@
 * [Contiguous Subarrays](CodingExercises/Array/ContiguousSubarrays.rb)
 * [Passing Yearbooks](CodingExercises/Array/PassingYearbooks.rb)
 * [Reverse to Make Equal](CodingExercises/Array/ReverseToMakeEqual.rb)
-### Graphs
-* [Minimizing Permutations](CodingExercises/Graphs/MinimizingPermutations.rb)
 ### GreedyAlgorithms
 * [Element Swapping](CodingExercises/GreedyAlgorithms/ElementSwapping.rb)
 * [Seating Arrangements](CodingExercises/GreedyAlgorithms/SeatingArrangements.rb)
@@ -17,8 +15,6 @@
 * [Largest Triple Products](CodingExercises/Heaps/LargestTripleProducts.rb)
 * [Magical Candy Bags](CodingExercises/Heaps/MagicalCandyBags.rb)
 * [Largest Triple Products](CodingExercises/Heaps/MedianStream.rb)
-### LinkedList
-* [Reverse Operations](CodingExercises/LinkedList/ReverseOperations.rb)
 ### Queue
 * [Queue Removal](CodingExercises/Queue/QueueRemoval.rb)
 ### Recursion
