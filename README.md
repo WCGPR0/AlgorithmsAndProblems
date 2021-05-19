@@ -8,3 +8,5 @@
 * [Median Stream](CodingExercises/Heaps/MedianStream.go)
 ### Linked List
 * [Reverse Operations](CodingExercises/LinkedList/ReverseOperations.go) **todo**
+### Graphs
+* [Minimizing Permuations](CodingExercises/Graphs/MinimizingPermutations.go) **todo**
