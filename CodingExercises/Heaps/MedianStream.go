@@ -24,62 +24,46 @@ output = [1, 1]
 The median of [1] is 1, the median of [1, 2] is (1 + 2) / 2 = 1.5 (which should be rounded down to 1).
 */
 
-package main
+package Heaps
 
 import (
 	"container/heap"
 )
 
-type IntHeap []int
-
-func (h IntHeap) Len() int           { return len(h) }
-func (h IntHeap) Less(i, j int) bool { return h[i] > h[j] }
-func (h IntHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
-
-func (h *IntHeap) Push(x interface{}) {
-	*h = append(*h, x.(int))
-}
-
-func (h *IntHeap) Pop() interface{} {
-	old := *h
-	n := len(old)
-	x := old[n-1]
-	*h = old[0 : n-1]
-	return x
-}
-
 type MinHeap struct {
 	IntHeap
 }
 
-func (h MinHeap) Less(i, j int) bool { return h.IntHeap[i] < h.IntHeap[j] }
+func (h MinHeap) Less(i, j int) bool {
+	return h.IntHeap[i] < h.IntHeap[j]
+}
 
 func findMedian(arr []int) []int {
 	var findMedian []int
-	minHeap := &MinHeap{}
+	MinHeap := &MinHeap{}
 	maxHeap := &IntHeap{}
 	for index, element := range arr {
 		if (index == 0) || (element < (*maxHeap)[0]) {
 			heap.Push(maxHeap, element)
 		} else {
-			heap.Push(minHeap, element)
+			heap.Push(MinHeap, element)
 		}
 
-		if maxHeap.Len() > minHeap.Len()+1 {
+		if maxHeap.Len() > MinHeap.Len()+1 {
 			element := maxHeap.Pop()
-			heap.Push(minHeap, element)
-		} else if minHeap.Len() > maxHeap.Len()+1 {
-			element := minHeap.Pop()
+			heap.Push(MinHeap, element)
+		} else if MinHeap.Len() > maxHeap.Len()+1 {
+			element := MinHeap.Pop()
 			heap.Push(maxHeap, element)
 		}
 
 		var median int
-		if maxHeap.Len() == minHeap.Len() {
-			median = ((*maxHeap)[0] + minHeap.IntHeap[0]) / 2
+		if maxHeap.Len() == MinHeap.Len() {
+			median = ((*maxHeap)[0] + MinHeap.IntHeap[0]) / 2
 		} else {
 			median = (*maxHeap)[0]
-			if minHeap.Len() > maxHeap.Len() {
-				median = minHeap.IntHeap[0]
+			if MinHeap.Len() > maxHeap.Len() {
+				median = MinHeap.IntHeap[0]
 			}
 		}
 
